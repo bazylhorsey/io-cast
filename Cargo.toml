@@ -2,7 +2,8 @@
 name = "io-cast"
 version = "0.1.0"
 edition = "2021"
-
+description = "a high-level io function similar to Python's input function."
+license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
