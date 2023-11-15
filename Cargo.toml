@@ -1,5 +1,5 @@
 [package]
-name = "io-cast"
+name = "prompt"
 version = "0.1.1"
 edition = "2021"
 description = "a high-level io function similar to Python's input function."
