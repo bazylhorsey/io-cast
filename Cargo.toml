@@ -1,9 +1,19 @@
-[package]
-name = "rust-prompt"
-version = "0.1.1"
-edition = "2021"
-description = "a high-level io function similar to Python's input function."
-license = "MIT"
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+lazy_static = "1.5.0"
+[package]
+name = "input_macro"
+version = "0.1.2"
+edition = "2021"
+authors = ["Bazyl Horsey <bhorsey16@gmail.com>"]
+description = "A library providing a simple input macro for Rust, similar to Python's input()."
+license = "MIT" # Choose your preferred license(s)
+repository = "https://github.com/bazylhorsey/prompt_rust" # Replace with your repository URL
+keywords = ["input", "macro", "io", "stdin", "prompt"]
+categories = ["command-line-interface", "development-tools::testing", "no-std"]
+readme = "README.md"
+
+[lib]
+name = "input_macro"
+path = "src/lib.rs"
+
+[dev-dependencies]
