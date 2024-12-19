@@ -1,7 +1,7 @@
 [dependencies]
 lazy_static = "1.5.0"
 [package]
-name = "input_macro"
+name = "prompt-rust"
 version = "0.1.2"
 edition = "2021"
 authors = ["Bazyl Horsey <bhorsey16@gmail.com>"]
