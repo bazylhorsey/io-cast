@@ -81,7 +81,10 @@ where
             if trimmed_input.is_empty() && input.ends_with('\n') {
                 Ok(None) // Consider an empty line as EOF
             } else {
-                trimmed_input.parse::<T>().map(Some).map_err(InputError::Parse)
+                trimmed_input
+                    .parse::<T>()
+                    .map(Some)
+                    .map_err(InputError::Parse)
             }
         }
         Err(e) => Err(InputError::Io(e)),
@@ -116,7 +119,9 @@ where
     read_and_parse_with_eof_from(&mut reader, None)
 }
 
-pub fn read_and_parse_with_prompt_eof<T: FromStr>(prompt: &str) -> Result<Option<T>, InputError<T::Err>>
+pub fn read_and_parse_with_prompt_eof<T: FromStr>(
+    prompt: &str,
+) -> Result<Option<T>, InputError<T::Err>>
 where
     T::Err: std::fmt::Debug + std::fmt::Display,
 {
