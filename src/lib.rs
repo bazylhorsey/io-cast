@@ -230,7 +230,7 @@ where
 /// - `input!()` reads a line from stdin and attempts to parse it into a `String`.
 ///   If EOF is encountered, it returns `Ok(None)`.
 ///
-/// - `input!("prompt")` prints the given prompt before reading and parsing the input.
+/// - `input!("prompt")` prints the given prompt **on the same line** before reading and parsing the input.
 ///   If EOF is encountered, `Ok(None)` is returned.
 ///
 /// This macro uses `read_and_parse_with_eof`, allowing for graceful EOF handling.
@@ -241,7 +241,7 @@ where
 /// // With no prompt
 /// let name: Option<String> = input!().unwrap();
 ///
-/// // With a prompt
+/// // With a prompt on the same line
 /// let age: Option<i32> = input!("Enter your age: ").unwrap();
 /// ```
 #[macro_export]
@@ -254,12 +254,45 @@ macro_rules! input {
     };
 }
 
+/// A macro for reading and parsing input from stdin, returning `Option<T>`,
+/// but prints the prompt (if any) **on its own line**.
+///
+/// - `inputln!()` without arguments reads a line from stdin and attempts to parse it
+///   into a `String`, returning `Ok(None)` on EOF.
+///
+/// - `inputln!("prompt")` prints the prompt on **its own line** (`println!`), then reads user input,
+///   returning `Ok(None)` on EOF.
+///
+/// This macro also uses `read_and_parse_with_eof`, so it handles EOF gracefully.
+///
+/// # Examples
+///
+/// ```no_run
+/// // With no prompt
+/// let text: Option<String> = inputln!().unwrap();
+///
+/// // With a newline prompt
+/// let color: Option<String> = inputln!("What's your favorite color?").unwrap();
+/// ```
+#[macro_export]
+macro_rules! inputln {
+    () => {
+        $crate::read_and_parse_with_eof::<String>()
+    };
+    ($prompt:expr) => {{
+        // Print the prompt on a new line
+        println!("{}", $prompt);
+        ::std::io::Write::flush(&mut ::std::io::stdout()).unwrap();
+        $crate::read_and_parse_with_eof::<String>()
+    }};
+}
+
 /// A macro for reading and parsing input from stdin that does not handle EOF gracefully.
 ///
 /// - `input_no_eof!()` reads a line and tries to parse it into a `String`.
 ///   On EOF or parsing error, returns an `Err`.
 ///
-/// - `input_no_eof!("prompt")` prints a prompt before reading.
+/// - `input_no_eof!("prompt")` prints a prompt before reading (same line).
 ///
 /// This macro uses `read_and_parse`, which returns an error on EOF rather than `None`.
 ///

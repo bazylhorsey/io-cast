@@ -1,6 +1,6 @@
 [package]
 name = "prompt-rust"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 authors = ["Bazyl Horsey <bhorsey16@gmail.com>"]
 description = "A library providing a simple input macro for Rust, similar to Python's input()."
